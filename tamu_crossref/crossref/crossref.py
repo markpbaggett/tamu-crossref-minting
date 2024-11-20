@@ -40,6 +40,9 @@ class CrossrefElement:
         self.xsi = self._build_namespace(
             "http://www.w3.org/2001/XMLSchema-instance", "xsi"
         )
+        self.jats = self._build_namespace(
+            "http://www.ncbi.nlm.nih.gov/JATS1", "jats"
+        )
 
     @staticmethod
     def _build_namespace(uri, short):
@@ -140,6 +143,11 @@ class ReportPaper(CrossrefElement):
                     self.cr.titles(
                         self.cr.title(
                             self.paper["title"]
+                        )
+                    ),
+                    self.jats.abstract(
+                        self.jats.p(
+                            self.paper["abstract"]
                         )
                     ),
                     self.cr.publication_date(
