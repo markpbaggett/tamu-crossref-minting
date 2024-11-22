@@ -1,5 +1,5 @@
-from tamu_crossref import XMLGenerator
 import click
+from tamu_crossref import XMLGenerator, PrefixLookup
 
 @click.group()
 def cli() -> None:
@@ -34,3 +34,28 @@ def generate(csv: str, deposit_type: str, output: str) -> None:
         type_of_deposit=deposit_type,
     )
     x.write_xml(output)
+
+@cli.command("find", help="Find TAMU DOIs")
+@click.option(
+    "--prefix",
+    "-p",
+    help="prefix to lookup",
+    required=False,
+    default="10.21423"
+)
+@click.option(
+    "--mailto",
+    "-m",
+    help="Email address associated with request",
+    required=True,
+)
+@click.option(
+    "--output",
+    "-o",
+    help="Output csv file",
+    required=False,
+    default="output.csv",
+)
+def find(prefix: str, mailto: str, output: str) -> None:
+    prefix = PrefixLookup(output=output, prefix=prefix, mail_to=mailto)
+    prefix.write()

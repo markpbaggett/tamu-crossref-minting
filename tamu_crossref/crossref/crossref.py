@@ -43,6 +43,9 @@ class CrossrefElement:
         self.jats = self._build_namespace(
             "http://www.ncbi.nlm.nih.gov/JATS1", "jats"
         )
+        self.mml = self._build_namespace(
+            "http://www.w3.org/1998/Math/MathML", "mml"
+        )
 
     @staticmethod
     def _build_namespace(uri, short):
@@ -181,6 +184,7 @@ class ReportPaper(CrossrefElement):
                     ),
                     language='en'
                 ),
+                publication_type="full_text"
             )
         )
 

@@ -10,8 +10,16 @@ pipx install tamu_crossref
 
 ## Running
 
+You can generate DOIS like this:
+
 ```
 crossref generate -c myrecords.csv -o briefs.xml -d reports
+```
+
+Or find DOIs like this:
+
+```
+crossref find -m "mark@example.com"
 ```
 
 ## Testing DOIs before Upload to Crossref
